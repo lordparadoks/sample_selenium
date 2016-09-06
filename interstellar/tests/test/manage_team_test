@@ -11,6 +11,7 @@ class ManageTeamTest(unittest.TestCase):
         self.driver.get('http://staging.in-ter-stel-lar.com/')
 
     def login(self):
+        #given
         user = 'kesha+3@rw.rw'
         password = '123456'
         #when
@@ -18,9 +19,12 @@ class ManageTeamTest(unittest.TestCase):
         post_sign_in_page = sign_in_page.log_in(user, password)
 
     def test_add_student(self):
+        #given
         stud_name = 'Timmy'
         stud_last_name = 'Jones'
+        #when
         self.login()
+        #then
         manage_team_page = TeacherIndexPage(self.driver).open_manage_team_page()
         post_manage_team_page = manage_team_page.student_no_email(stud_name, stud_last_name)
 
