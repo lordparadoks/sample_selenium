@@ -22,6 +22,7 @@ class EditProfileTest(unittest.TestCase):
         post_sign_in_page = sign_in_page.log_in(user, password)
 
     def test_edit_profile(self):
+        #given
         first_name = "Tom", + randint(1, 100)
         last_name = "Cox", + randint(1, 10)
         phone = "500123456"
@@ -34,24 +35,31 @@ class EditProfileTest(unittest.TestCase):
         assert_that(post_edit_teacher_profile_page.get_page_source(), contains_string('Your account has been updated.'))
 
     def test_change_password(self):
+        #given
         password = '123456'
         confirmation_pass = '123456'
+        #when
         self.login()
         #then
         teacher_index_page = TeacherIndexPage(self.driver).open_teacher_profile_page()
         post_teacher_index_page = teacher_index_page.change_password(password, confirmation_pass)
 
     def test_edit_school(self):
+        #given
         school = "Hogwarts", + randint(1, 1000)
         city = "alaska", + randint(1, 1000)
+        #when
         self.login()
         #then
         teacher_index_page = TeacherIndexPage(self.driver).open_teacher_profile_page()
         post_teacher_index_page = teacher_index_page.edit_school(school, city)
 
     def test_upload_avatar(self):
+        #given
         avatar_path = "logo", randint(1, 5), ".jpg"
+        #when
         self.login()
+        #then
         teacher_index_page = TeacherIndexPage(self.driver).open_teacher_profile_page()
         post_edit_teacher_profile_page = teacher_index_page.upload_avatar(avatar_path)
         assert_that(post_edit_teacher_profile_page.get_page_source(), contains_string('Your account has been updated'))
