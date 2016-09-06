@@ -41,11 +41,14 @@ class SignInTest(unittest.TestCase):
         #given
         user = 'kaszubski'
         password = 'jenkins'
-
-
+        
         #when
         sign_in_page = IndexPage(self.driver).open_sign_in_page()
         post_sign_in_page = sign_in_page.log_in(user, password)
+        
+        #then
+        #then
+        assert_that(post_sign_in_page.get_page_source(), contains_string("Invalid username"))
 
     def test_forgot_password(self):
         #given
