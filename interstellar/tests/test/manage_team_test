@@ -1,0 +1,27 @@
+import unittest
+
+from tests.browser import Browser
+from tests.page.index_page import IndexPage
+from tests.page.teacher_index_page import TeacherIndexPage
+
+class ManageTeamTest(unittest.TestCase):
+    def setUp(self):
+        self.browser = Browser()
+        self.driver = self.browser.start()
+        self.driver.get('http://staging.in-ter-stel-lar.com/')
+
+    def login(self):
+        user = 'kesha+3@rw.rw'
+        password = '123456'
+        #when
+        sign_in_page = IndexPage(self.driver).open_sign_in_page()
+        post_sign_in_page = sign_in_page.log_in(user, password)
+
+    def test_add_student(self):
+        stud_name = 'Timmy'
+        stud_last_name = 'Jones'
+        self.login()
+        manage_team_page = TeacherIndexPage(self.driver).open_manage_team_page()
+        post_manage_team_page = manage_team_page.student_no_email(stud_name, stud_last_name)
+
+    # def delete_student(self):
